@@ -61,9 +61,7 @@ function sendTurtles(nTurtles) {
 client.on('message', (message) => {
 
     // don't reply to other bots
-	if (userID == bot.id) {
-		return;
-    }
+	if (message.author.bot) return;
 
     // send turtle pictures
     if (message.content.toLowerCase().startsWith("/turtle")) {
