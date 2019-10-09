@@ -1,12 +1,14 @@
 var Discord = require("discord.io");
+const client = new Discord.Client();
 const config = require("./config.json");
 var fs = require('fs');
 var dire = fs.readdirSync('./TurtlePics');
 
-var bot = new Discord.Client({
-    token: config.token,
-    autorun: true
-})
+client.login(config.token);
+
+client.on("ready", () => {
+    console.log("turtle");
+  });
 
 function newTurtlePic() {
     var index = Math.floor(Math.random()*dire.length);
@@ -53,7 +55,7 @@ function sendTurtles(nTurtles) {
     return;    
 }
 
-bot.on('message', function (user, userID, channelID, message, evt) {
+client.on('message', (message) => {
 
     // don't reply to other bots
 	if (userID == bot.id) {
