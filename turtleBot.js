@@ -4,11 +4,11 @@ const config = require("./config.json");
 var fs = require('fs');
 var dire = fs.readdirSync('./TurtlePics');
 
-client.login(config.token);
-
 client.on("ready", () => {
     console.log("turtle");
   });
+
+client.login(config.token);
 
 function newTurtlePic() {
     var index = Math.floor(Math.random()*dire.length);
