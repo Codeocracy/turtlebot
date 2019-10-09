@@ -1,4 +1,4 @@
-var Discord = require("discord.io");
+const Discord = require("discord.io");
 const client = new Discord.Client();
 const config = require("./config.json");
 var fs = require('fs');
@@ -6,7 +6,12 @@ var dire = fs.readdirSync('./TurtlePics');
 
 client.on("ready", () => {
     console.log("turtle");
-  });
+});
+
+client.on('disconnect', function(erMsg, code) {
+	console.log('---- Bot disconnected from Discord with code', code, 'for reason:', erMsg, '----');
+	client.connect();
+});
 
 function newTurtlePic() {
     var index = Math.floor(Math.random()*dire.length);
