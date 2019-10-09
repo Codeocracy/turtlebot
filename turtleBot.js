@@ -8,8 +8,6 @@ client.on("ready", () => {
     console.log("turtle");
   });
 
-client.login(config.token);
-
 function newTurtlePic() {
     var index = Math.floor(Math.random()*dire.length);
     return dire[index];
@@ -81,3 +79,5 @@ client.on('message', (message) => {
         message.react("🐢"); return;
     }
 });
+
+client.login(config.token);
