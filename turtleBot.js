@@ -51,7 +51,7 @@ function sendTurtles(nTurtles) {
     }
 
     // send remainder of requested turtles
-    if (r != 0) {
+    if (remainder != 0) {
         message.channel.send("🐢".repeat(r));
     }
 
