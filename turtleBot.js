@@ -18,8 +18,7 @@ function checkRequest(mess) {
     sendIndex = mess.indexOf("send")
     turtleIndex = mess.indexOf("turtle")
 
-    if ((turtleIndex > sendIndex) && (turtleIndex != -1) && (sendIndex != -1)) {
-    
+       
         var theNum = mess.replace( /^\D+/g, '');
         var nTurtles = parseInt(theNum, 10);
     
@@ -27,10 +26,6 @@ function checkRequest(mess) {
             nTurtles = 1000
         }
         return nTurtles;
-    }
-    else {
-        return 0;
-    }
 }
 
 function sendTurtles(nTurtles) {
@@ -60,18 +55,28 @@ function sendTurtles(nTurtles) {
 
 bot.on('message', function (user, userID, channelID, message, evt) {
 
+    // don't reply to other bots
 	if (userID == bot.id) {
 		return;
     }
 
+    // send turtle pictures
     if (message.content.toLowerCase().startsWith("/turtle")) {
         message.channel.send({ files: ['./TurtlePics/' + newTurtlePic()]});
         return;
     }
-    
-    nTurtles = checkRequest(message.content.toLowerCase());
-    if (nTurtles > 0) {
+
+    // send a number of requsted turtle emojis
+    if ((turtleIndex > sendIndex) && (turtleIndex != -1) && (sendIndex != -1)) {
+        nTurtles = checkRequest(message.content.toLowerCase());
         sendTurtles(nTurtles);
+        return;
+    }
+
+    // randomly react to messages with turtle emoji
+    var num = Math.random();
+    if (num <= 0.01) {
+        message.react("🐢"); return;
     }
 });
 
