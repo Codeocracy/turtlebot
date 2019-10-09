@@ -70,6 +70,8 @@ client.on('message', (message) => {
     }
 
     // send a number of requsted turtle emojis
+    turtleIndex = message.content.toLowerCase().indexOf("turtle");
+    sendIndex = message.content.toLowerCase().indexOf("send");
     if ((turtleIndex > sendIndex) && (turtleIndex != -1) && (sendIndex != -1)) {
         nTurtles = checkRequest(message.content.toLowerCase());
         sendTurtles(nTurtles);
