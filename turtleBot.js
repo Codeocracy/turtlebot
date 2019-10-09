@@ -1,5 +1,5 @@
 var Discord = require("discord.io");
-var config = require(".config.json");
+var config = require("config.json");
 var fs = require('fs');
 var dire = fs.readdirSync('./TurtlePics');
 
