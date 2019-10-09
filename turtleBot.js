@@ -79,5 +79,3 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         message.react("🐢"); return;
     }
 });
-
-client.login(config.token);
