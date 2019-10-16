@@ -33,31 +33,6 @@ function checkRequest(mess) {
         return nTurtles;
 }
 
-function sendTurtles(nTurtles) {
-
-    // calculate how many turtles are needed beyond potentially maxed-out messages
-    var remainder = nTurtles % 250;
-
-    // each message can have at max 250 turtle emoji.
-    // Calculate how many n of these maxed messages are needed
-    nMax = Math.floor(nTurtles/250);
-
-    // send nMax 250-turtle messages
-    if (nMax != 0) {
-        emote250 = "🐢".repeat(250);
-        for (nMax; nMax > 0; nMax--) {
-            message.channel.send(emote250);
-        }
-    }
-
-    // send remainder of requested turtles
-    if (remainder != 0) {
-        message.channel.send("🐢".repeat(r));
-    }
-
-    return;    
-}
-
 client.on('message', (message) => {
 
     // don't reply to other bots
@@ -74,7 +49,27 @@ client.on('message', (message) => {
     sendIndex = message.content.toLowerCase().indexOf("send");
     if ((turtleIndex > sendIndex) && (turtleIndex != -1) && (sendIndex != -1)) {
         nTurtles = checkRequest(message.content.toLowerCase());
-        sendTurtles(nTurtles);
+
+        // calculate how many turtles are needed beyond potentially maxed-out messages
+        var remainder = nTurtles % 250;
+
+        // each message can have at max 250 turtle emoji.
+        // Calculate how many n of these maxed messages are needed
+        nMax = Math.floor(nTurtles/250);
+
+        // send nMax 250-turtle messages
+        if (nMax != 0) {
+            emote250 = "🐢".repeat(250);
+            for (nMax; nMax > 0; nMax--) {
+                message.channel.send(emote250);
+            }
+        }
+
+        // send remainder of requested turtles
+        if (remainder != 0) {
+            message.channel.send("🐢".repeat(r));
+        }
+
         return;
     }
 
