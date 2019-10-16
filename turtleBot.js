@@ -4,15 +4,6 @@ const config = require("./config.json");
 var fs = require('fs');
 var dire = fs.readdirSync('./TurtlePics');
 
-client.on("ready", () => {
-    console.log("turtle");
-});
-
-client.on('disconnect', function(erMsg, code) {
-	console.log('---- Bot disconnected from Discord with code', code, 'for reason:', erMsg, '----');
-	client.connect();
-});
-
 function newTurtlePic() {
     var index = Math.floor(Math.random()*dire.length);
     return dire[index];
@@ -23,15 +14,23 @@ function checkRequest(mess) {
     sendIndex = mess.indexOf("send")
     turtleIndex = mess.indexOf("turtle")
 
-       
-        var theNum = mess.replace( /^\D+/g, '');
-        var nTurtles = parseInt(theNum, 10);
+    var theNum = mess.replace( /^\D+/g, '');
+    var nTurtles = parseInt(theNum, 10);
     
-        if (nTurtles > 1000) {
-            nTurtles = 1000
-        }
-        return nTurtles;
+    if (nTurtles > 1000) {
+        nTurtles = 1000
+    }
+    return nTurtles;
 }
+
+client.on("ready", () => {
+    console.log("turtle");
+});
+
+client.on('disconnect', function(erMsg, code) {
+	console.log('---- Bot disconnected from Discord with code', code, 'for reason:', erMsg, '----');
+	client.connect();
+});
 
 client.on('message', (message) => {
 
